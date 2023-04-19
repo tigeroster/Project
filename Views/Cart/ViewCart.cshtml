@@ -1,0 +1,129 @@
+﻿
+@model IEnumerable<Project.Models.Cart>
+@{
+    ViewBag.Title = "Cart";
+    Layout = "~/Views/Shared/_LayoutPage2.cshtml";
+}
+
+<div role="main" class="main shop py-4">
+
+    <div class="container">
+
+        <div class="row">
+            <div class="col">
+
+                <div class="featured-boxes">
+                    <div class="row">
+                        <div class="col">
+                            <div class="featured-box featured-box-primary text-left mt-2">
+                                <div class="box-content">
+                                    <form method="post" action="">
+                                        <table class="shop_table cart">
+                                            <thead>
+                                                <tr>
+
+                                                    <th class="product-thumbnail" style="color:white">
+                                                        Product
+                                                    </th>
+                                                    <th class="product-name" style="color:white">
+                                                        &nbsp;
+                                                    </th>
+                                                    <th class="product-price" style="color:white">
+                                                        Price
+                                                    </th>
+                                                    <th class="product-remove" style="color:white">
+                                                        Remove
+                                                    </th>
+
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                @foreach (var item in Model)
+                                                {
+                                                    <tr class="cart_table_item">
+
+                                                        <td class="product-thumbnail">
+                                                            <a href="shop-product-sidebar-left.html">
+                                                                <img width="100" height="100" alt="" class="img-fluid" src="@Url.Content(item.image)">
+                                                            </a>
+                                                        </td>
+                                                        <td class="product-name">
+                                                            <span style="color: #0088CC">@Html.DisplayFor(modelItem => item.game)</span>
+                                                        </td>
+                                                        <td class="product-price">
+                                                            <span class="amount" style="color:white">$@Html.DisplayFor(modelItem => item.price)</span>
+                                                        </td>
+                                                        <td class="product-remove">
+                                                            <a title="Remove this item" class="remove" href="@Url.Action("RemoveProduct", "Cart", new { name = item.game})">
+                                                                <i class="fas fa-trash" style="color:red;"></i>
+                                                            </a>
+                                                        </td>
+                                                    </tr>
+
+                                                }
+                                                <tr class="cart_table_item">
+                                                    <td class="actions" colspan="6">
+                                                        <div class="actions-continue">
+                                                            <a href="@Url.Action("ProductCatalogue", "Home")" class="btn btn-primary btn-modern text-uppercase">Continue Shopping <i class="fas fa-angle-right ml-1"></i></a>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="featured-boxes">
+                    <div class="row">
+
+                        <div class="col-sm-6">
+                            <div class="featured-box featured-box-primary text-left mt-3 mt-lg-4">
+                                <div class="box-content">
+                                    <h4 class="color-primary font-weight-semibold text-6 text-uppercase mb-3">Cart Totals</h4><br />
+                                    <table class="cart-totals">
+                                        <tbody>
+                                            <tr class="total">
+                                                <br />
+                                                
+                                                <th>
+                                                    <strong class="text-light">Order Total</strong>
+                                                </th>
+                                                <td>
+                                                    <strong class="text-light"><span class="amount">$@Session["total"]</span></strong>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                      
+                        <div class="col-lg-4" style="margin-left:185px;">
+                            <section class="call-to-action call-to-action-primary button-centered mb-5">
+                                <div class="col-12">
+                                    <div class="call-to-action-content">
+                                        <h3>Now you can pay by <strong>Paypal</strong></h3>
+                                        
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="call-to-action-btn">
+                                        <a href="@Url.Action("PaymentWithPaypal", "Cart")" target="_blank" class="btn btn-modern text-2 btn-light border-0" style="background-color: #ffc107;">Proceed To Checkout</a>
+                                    </div>
+                                </div>
+                            </section>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+</div>

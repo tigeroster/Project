@@ -1,0 +1,317 @@
+﻿@model IEnumerable<object>
+
+@{
+    List<Project.Models.Game> games = Model.ToList()[0] as List<Project.Models.Game>;
+    List<Project.Models.Category> categories = Model.ToList()[1] as List<Project.Models.Category>;
+    List<Project.Models.Developer> developers = Model.ToList()[2] as List<Project.Models.Developer>;
+
+}
+@{
+    ViewBag.Title = "Product";
+    Layout = "~/Views/Shared/_LayoutPage2.cshtml";
+}
+
+<div role="main" class="main shop py-4">
+
+    <div class="container">
+
+        <div class="row">
+            <div class="col-lg-3">
+                <aside class="sidebar">
+                    <h5 class="font-weight-bold pt-3">Categories</h5>
+                    <ul class="nav nav-list flex-column">
+                        <li class="nav-item">@Html.ActionLink("All", "ProductCatalogue", "", new { @style = "color:azure" })</li>
+                        @foreach (var cat in categories)
+                        {
+                            <li class="nav-item">@Html.ActionLink(cat.Category_name, "Filter", new { name = cat.Category_name }, new { @style = "color:azure" })</li>
+                        }
+
+                    </ul>
+                    <h5 class="font-weight-bold pt-5">Developers</h5>
+                    <div class="mb-3 pb-1">
+                        @foreach (var dev in developers)
+                        {
+                            <a href="#"><span class="badge badge-light badge-sm badge-pill text-uppercase px-2 py-1 mr-1">@Html.DisplayFor(modelItem => dev.Developer_name)</span></a>
+                        }
+
+                    </div>
+                    <div class="row mb-5">
+                        <div class="col">
+                            <h5 class="font-weight-bold pt-5">Top Rated Games</h5>
+                            <ul class="simple-post-list">
+                                <li>
+                                    <div class="post-image">
+                                        <div class="d-block">
+                                            <a href="shop-product-sidebar-left.html">
+                                                <img alt="" width="60" height="60" class="img-fluid" src="~/Content/img/products/product-1.jpg">
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="post-info">
+                                        <a href="shop-product-sidebar-left.html">GTA V</a>
+                                        <div class="post-meta text-dark font-weight-semibold">
+                                            $299
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="post-image">
+                                        <div class="d-block">
+                                            <a href="shop-product-sidebar-left.html">
+                                                <img alt="" width="60" height="60" class="img-fluid" src="~/Content/img/products/product-4.jpg">
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="post-info">
+                                        <a href="shop-product-sidebar-left.html">FarCry6</a>
+                                        <div class="post-meta text-dark font-weight-semibold">
+                                            $199
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="post-image">
+                                        <div class="d-block">
+                                            <a href="shop-product-sidebar-left.html">
+                                                <img alt="" width="60" height="60" class="img-fluid" src="~/Content/img/products/product-3.jpg">
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="post-info">
+                                        <a href="shop-product-sidebar-left.html">Red Dead Redemption2</a>
+                                        <div class="post-meta text-dark font-weight-semibold">
+                                            $49
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </aside>
+            </div>
+            <div class="col-lg-9">
+                @foreach (var game in games)
+                {
+                    <div class="row">
+                        <div class="col-lg-6">
+
+                            <div class="owl-carousel owl-theme" data-plugin-options="{'items': 1, 'margin': 10}">
+                                <div>
+                                    <img alt="" height="300" class="img-fluid" src="@Url.Content(game.Game_Image)">
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                        <div class="col-lg-6">
+
+                            <div class="summary entry-summary">
+
+                                <h1 class="mb-0 font-weight-bold text-7">@Html.DisplayFor(modelItem => game.Game_Name)</h1>
+
+                                <div class="pb-0 clearfix">
+                                    <div title="Rated 3 out of 5" class="float-left">
+                                        <input type="text" class="d-none" value="3" title="" data-plugin-star-rating data-plugin-options="{'displayOnly': true, 'color': 'primary', 'size':'xs'}">
+                                    </div>
+
+                                    <div class="review-num">
+                                        <span class="count" itemprop="ratingCount">2</span> reviews
+                                    </div>
+                                </div>
+
+                                <p class="price">
+                                    <span class="amount" style="color:aliceblue">$@Html.DisplayFor(modelItem => game.Price)</span>
+                                </p>
+
+                                <p class="mb-5" style="color: #CAD0D4"> @Html.DisplayFor(modelItem => game.Description)</p>
+
+                                <form enctype="multipart/form-data" method="post" class="cart">
+                                    
+                                    <a href="@Url.Action("AddToCart","Cart", new { id=game.Game_Id})" class="btn btn-primary btn-modern text-uppercase">Add to cart</a>
+                                </form>
+
+                               
+                            </div>
+
+
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col">
+                            <div class="tabs tabs-product mb-2">
+                                <ul class="nav nav-tabs">
+                                    <li class="nav-item active"><a class="nav-link py-3 px-4" href="#productDescription" data-toggle="tab">Description</a></li>
+                                    <li class="nav-item"><a class="nav-link py-3 px-4" href="#productInfo" data-toggle="tab">Requirements</a></li>
+                                    <li class="nav-item"><a class="nav-link py-3 px-4" href="#productReviews" data-toggle="tab">Reviews</a></li>
+                                </ul>
+                                <div class="tab-content p-0">
+                                    <div class="tab-pane p-4 active" id="productDescription">
+                                        <table class="table m-0">
+                                            <tbody>
+                                                <tr>
+                                                    <th class="border-top-0">
+                                                        <p class="mb-5" style="color: #959B9F">Category:</p>
+                                                    </th>
+                                                    <td class="border-top-0">
+                                                        <p class="mb-5" style="color: #CAD0D4"> @Html.DisplayFor(modelItem => game.Category.Category_name)</p>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th>
+                                                        <p class="mb-5" style="color: #959B9F">Developer:</p>
+                                                    </th>
+                                                    <td>
+                                                        <p class="mb-5" style="color: #CAD0D4"> @Html.DisplayFor(modelItem => game.Developer.Developer_name)</p>
+                                                    </td>
+                                                </tr>
+
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    
+                                    <div class="tab-pane p-" id="productInfo">
+                                        <table class="table m-0">
+                                            <tbody>
+                                                <tr>
+                                                    <th class="border-top-0">
+                                                        <p class="mb-5" style="color: #959B9F">RAM:</p>
+                                                    </th>
+                                                    <td class="border-top-0">
+                                                        <p class="mb-5" style="color: #CAD0D4"> @Html.DisplayFor(modelItem => game.RAM)</p>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th>
+                                                        <p class="mb-5" style="color: #959B9F">VGA:</p>
+                                                    </th>
+                                                    <td>
+                                                        <p class="mb-5" style="color: #CAD0D4"> @Html.DisplayFor(modelItem => game.VGA)</p>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th>
+                                                        <p class="mb-5" style="color: #959B9F">CPU:</p>
+                                                    </th>
+                                                    <td>
+                                                        <p class="mb-5" style="color: #CAD0D4"> @Html.DisplayFor(modelItem => game.CPU)</p>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th>
+                                                        <p class="mb-5" style="color: #959B9F">Storage:</p>
+                                                    </th>
+                                                    <td>
+                                                        <p class="mb-5" style="color: #CAD0D4"> @Html.DisplayFor(modelItem => game.Disk_Space)</p>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    @*<div class="tab-pane p-4" id="productReviews">
+            <ul class="comments">
+                <li>
+                    <div class="comment">
+                        <div class="img-thumbnail border-0 p-0 d-none d-md-block">
+                            <img class="avatar" alt="" src="img/avatars/avatar-2.jpg">
+                        </div>
+                        <div class="comment-block">
+                            <div class="comment-arrow"></div>
+                            <span class="comment-by">
+                                <strong>Jack Doe</strong>
+                                <span class="float-right">
+                                    <div class="pb-0 clearfix">
+                                        <div title="Rated 3 out of 5" class="float-left">
+                                            <input type="text" class="d-none" value="3" title="" data-plugin-star-rating data-plugin-options="{'displayOnly': true, 'color': 'primary', 'size':'xs'}">
+                                        </div>
+
+                                        <div class="review-num">
+                                            <span class="count" itemprop="ratingCount">2</span> reviews
+                                        </div>
+                                    </div>
+                                </span>
+                            </span>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae, gravida pellentesque urna varius vitae.</p>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class="comment">
+                        <div class="img-thumbnail border-0 p-0 d-none d-md-block">
+                            <img class="avatar" alt="" src="img/avatars/avatar.jpg">
+                        </div>
+                        <div class="comment-block">
+                            <div class="comment-arrow"></div>
+                            <span class="comment-by">
+                                <strong>John Doe</strong>
+                                <span class="float-right">
+                                    <div class="pb-0 clearfix">
+                                        <div title="Rated 3 out of 5" class="float-left">
+                                            <input type="text" class="d-none" value="3" title="" data-plugin-star-rating data-plugin-options="{'displayOnly': true, 'color': 'primary', 'size':'xs'}">
+                                        </div>
+
+                                        <div class="review-num">
+                                            <span class="count" itemprop="ratingCount">2</span> reviews
+                                        </div>
+                                    </div>
+                                </span>
+                            </span>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra odio, gravida urna varius vitae, gravida pellentesque urna varius vitae.</p>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+            <hr class="solid my-5">
+            <h4>Add a review</h4>
+            <div class="row">
+                <div class="col">
+
+                    <form action="" id="submitReview" method="post">
+                        <div class="form-row">
+                            <div class="form-group col pb-2">
+                                <label class="required font-weight-bold text-dark">Rating</label>
+                                <input type="text" class="rating-loading" value="0" title="" data-plugin-star-rating data-plugin-options="{'color': 'primary', 'size':'xs'}">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-lg-6">
+                                <label class="required font-weight-bold text-dark">Name</label>
+                                <input type="text" value="" data-msg-required="Please enter your name." maxlength="100" class="form-control" name="name" id="name" required>
+                            </div>
+                            <div class="form-group col-lg-6">
+                                <label class="required font-weight-bold text-dark">Email Address</label>
+                                <input type="email" value="" data-msg-required="Please enter your email address." data-msg-email="Please enter a valid email address." maxlength="100" class="form-control" name="email" id="email" required>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col">
+                                <label class="required font-weight-bold text-dark">Review</label>
+                                <textarea maxlength="5000" data-msg-required="Please enter your review." rows="8" class="form-control" name="review" id="review" required></textarea>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col mb-0">
+                                <input type="submit" value="Post Review" class="btn btn-primary btn-modern" data-loading-text="Loading...">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+        </div>*@
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <hr class="solid my-5">
+
+                }
+
+
+            </div>
+        </div>
+    </div>
+
+</div>

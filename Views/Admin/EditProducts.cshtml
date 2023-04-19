@@ -1,0 +1,98 @@
+﻿@model Project.Models.Game
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container-fluid py-4 content-center">
+    <div class="row">
+        <div class="col-lg-7 border-radius-lg">
+            <div class="card z-index-2">
+                <div class="card-header pb-0">
+                    <h3>Update the Developer</h3>
+
+                    @using (Html.BeginForm())
+                    {
+                        @Html.AntiForgeryToken()
+
+                <div class="form-horizontal form-control-lg form-control-sm">
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    <div class="form-group">
+                        <div class="font-weight-bold">Game ID</div>
+                        <div class="col-md-10">
+                            @Html.DisplayFor(model => model.Game_Id)
+
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="font-weight-bold">Game Name</div>
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.Game_Name, new { htmlAttributes = new { @class = "form-control" } })
+
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="font-weight-bold">Price</div>
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.Price, new { htmlAttributes = new { @class = "form-control" } })
+
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="font-weight-bold">Developer</div>
+                        <div class="col-md-10">
+                            @Html.DropDownList("Developer_name", Session["dev"] as List<SelectListItem>, "", new { name = "Developer_name", @class = "form-control" })
+
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="font-weight-bold">Category</div>
+                        <div class="col-md-10">
+                            @Html.DropDownList("Category_name", Session["cat"] as List<SelectListItem>, "", new { name = "Category_name", @class = "form-control" })
+
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="font-weight-bold">RAM</div>
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.RAM, new { htmlAttributes = new { @class = "form-control" } })
+
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="font-weight-bold">VGA</div>
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.VGA, new { htmlAttributes = new { @class = "form-control" } })
+
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="font-weight-bold">CPU</div>
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.CPU, new { htmlAttributes = new { @class = "form-control" } })
+
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="font-weight-bold">Storage</div>
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.Disk_Space, new { htmlAttributes = new { @class = "form-control" } })
+
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-10">
+                            <input type="submit" value="Update" class="btn btn-info" />
+                            <a href="@Url.Action("Tables","Admin")" class="btn btn-danger">Cancel</a>
+                        </div>
+                    </div>
+                </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

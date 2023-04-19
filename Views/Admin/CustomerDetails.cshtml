@@ -1,0 +1,62 @@
+﻿@model Project.Models.User
+
+<div class="container-fluid py-4 content-center">
+    <div class="row">
+        <div class="col-lg-7 border-radius-lg">
+            <div class="card z-index-2">
+                <div class="card-header pb-0">
+                    <h3>Customer Details</h3>
+
+                    <div class="form-horizontal form-control-lg form-control-sm">
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                        <div class="form-group">
+                            <div class="font-weight-bold">Customer ID</div>
+                            <div class="col-md-10">
+                                @Html.DisplayFor(model => model.User_id)
+
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="font-weight-bold">Customer Name</div>
+                            <div class="col-md-10">
+                                @Html.DisplayFor(model => model.User_Name)
+
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <div class="font-weight-bold">Email</div>
+                            <div class="col-md-10">
+                                @Html.DisplayFor(model => model.Email)
+
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="font-weight-bold">Country</div>
+                            <div class="col-md-10">
+                                @Html.DisplayFor(model => model.Country)
+
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="font-weight-bold">Date of Birth</div>
+                            <div class="col-md-10">
+                                @Html.DisplayFor(model => model.DoB)
+
+                            </div>
+                        </div>
+                       
+                        <div class="form-group">
+                            <div class="col-md-offset-2 col-md-10">
+                                <a href="@Url.Action("Index","Admin")" class="btn btn-danger">Exit</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

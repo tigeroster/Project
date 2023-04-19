@@ -1,0 +1,21 @@
+﻿@{
+    ViewBag.Title = "Cart";
+    Layout = "~/Views/Shared/_LayoutPage2.cshtml";
+}
+
+<section class="call-to-action with-borders button-centered mb-5">
+    <div style="padding-left:50%">
+        <i class="fas fa-exclamation-triangle" style="color: #D81C1C; font-size: 50px"></i>
+    </div>
+    <div class="col-12">
+        <div class="call-to-action-content">
+            <h3 style="color: #D81C1C">SORRY! <strong class="font-weight-extra-bold">YOUR ORDER FAILED</strong></h3>
+            <p class="mb-0">Thank You For Being A Valuable <strong class="font-weight-extra-bold">Monarchy</strong> Customer</p>
+        </div>
+    </div>
+    <div class="col-12">
+        <div class="call-to-action-btn">
+            <a href="@Url.Action("ProductCatalogue","Home")" target="_blank" class="btn btn-modern text-2 btn-primary">Continue Shopping</a>
+        </div>
+    </div>
+</section>

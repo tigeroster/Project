@@ -1,0 +1,49 @@
+﻿@model Project.Models.Category
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container-fluid py-4 content-center">
+    <div class="row">
+        <div class="col-lg-7 border-radius-lg">
+            <div class="card z-index-2">
+                <div class="card-header pb-0">
+                    <h3>Update the Category</h3>
+
+                    @using (Html.BeginForm())
+                    {
+                        @Html.AntiForgeryToken()
+
+                        <div class="form-horizontal form-control-lg form-control-sm">
+                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                            <div class="form-group">
+                                <div class="font-weight-bold">Category ID</div>
+                                <div class="col-md-10">
+                                    @Html.DisplayFor(model => model.Category_Id)
+
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="font-weight-bold">Category Name</div>
+                                <div class="col-md-10">
+                                    @Html.EditorFor(model => model.Category_name, new { htmlAttributes = new { @class = "form-control" } })
+
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="col-md-offset-2 col-md-10">
+                                    <input type="submit" value="Update" class="btn btn-info" />
+                                    <a href="@Url.Action("Tables","Admin")" class="btn btn-danger">Cancel</a>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

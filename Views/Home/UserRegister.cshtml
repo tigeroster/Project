@@ -1,0 +1,192 @@
+﻿
+@model Project.Models.User
+
+@{
+    ViewBag.Title = "Register";
+    Layout = "~/Views/Shared/_LayoutPage1.cshtml";
+}
+
+
+<script>
+    function ImagePreview(input) {
+        if (input.files[0]) {
+            var upload = new FileReader();
+            upload.onload = function (display) {
+                $("#profilePic").attr('src', display.target.result);
+            }
+            upload.readAsDataURL(input.files[0]);
+        }
+    }
+</script>
+
+
+<div role="main" class="main">
+
+    <section class="page-header page-header-classic">
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <ul class="breadcrumb">
+                        <li><a href="#">Home</a></li>
+                        <li class="active">Pages</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col p-static">
+                    <h1 data-title-border>User Profile</h1>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="container py-2">
+        @using (Html.BeginForm("UserRegister", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
+            <div class="row">
+                <div class="col-lg-3 mt-4 mt-lg-0">
+
+                    <div class="d-flex justify-content-center mb-4">
+                        <div class="profile-image-outer-container">
+                            <div class="profile-image-inner-container bg-color-primary">
+                                <img id="profilePic">
+                                <span class="profile-image-button bg-color-dark">
+                                    <i class="fas fa-camera text-light"></i>
+                                </span>
+                            </div>
+
+                            <input type="file" id="file" class="profile-image-input" name="fileBase" onchange="ImagePreview(this)">
+
+                        </div>
+                    </div>
+
+                    <aside class="sidebar mt-2" id="sidebar">
+                        <ul class="nav nav-list flex-column mb-5">
+                            <li class="nav-item"><a class="nav-link text-light active" href="#">My Profile</a></li>
+                            <li class="nav-item"><a class="nav-link" href="#">User Preferences</a></li>
+                            <li class="nav-item"><a class="nav-link" href="#">Billing</a></li>
+                            <li class="nav-item"><a class="nav-link" href="#">Invoices</a></li>
+                        </ul>
+                    </aside>
+
+                </div>
+                <div class="col-lg-9">
+
+                    <div class="overflow-hidden mb-1">
+                        <h2 class="font-weight-normal text-7 mb-0"><strong class="font-weight-extra-bold">Customer</strong> Register</h2>
+                    </div>
+                    <div class="overflow-hidden mb-4 pb-3">
+                        <p class="mb-0">Create a User Account from here</p>
+                    </div>
+
+                    @{
+                        string message = "success";
+                        string error = "error";
+                    }
+                    @{
+                        if (message == ViewBag.msg)
+                        {
+
+                            <div class="alert alert-success">
+                                <strong><i class="far fa-thumbs-up"></i> Well done!</strong> You successfully Registered.Now Login.
+                            </div>
+
+                        }
+                        else if (error == ViewBag.error)
+                        {
+                            <div class="alert alert-warning alert-dismissible" role="alert">
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
+                                <strong>Warning!</strong> This email has already registered!
+                            </div>
+                        }
+                    }
+
+                    @Html.AntiForgeryToken()
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    <div class="form-group row">
+                        <label class="col-lg-3 font-weight-bold text-light col-form-label form-control-label text-2 required">First name</label>
+                        <div class="col-lg-9">
+                            @Html.EditorFor(model => model.First_Name, new { htmlAttributes = new { @class = "form-control", @style = "color:aliceblue;", @placeholder = "first name" } })
+
+                            @Html.ValidationMessageFor(model => model.First_Name, "", new { @style = "color:red;" })
+                        </div>
+
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-lg-3 font-weight-bold text-light  col-form-label form-control-label text-2 required">Last name</label>
+                        <div class="col-lg-9">
+
+                            @Html.EditorFor(model => model.Last_name, new { htmlAttributes = new { @class = "form-control", @style = "color:aliceblue;", @placeholder = "last name" } })
+
+                            @Html.ValidationMessageFor(model => model.Last_name, "", new { @style = "color:red;" })
+
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-lg-3 font-weight-bold text-light col-form-label form-control-label text-2 required">Email</label>
+                        <div class="col-lg-9">
+                            @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control", @style = "color:aliceblue;", @placeholder = "someone@email.com" } })
+                            @Html.ValidationMessageFor(model => model.Email, "", new { @style = "color:red;" })
+
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-lg-3 font-weight-bold text-light col-form-label form-control-label text-2">Date of Birth</label>
+                        <div class="col-lg-9">
+                            @Html.EditorFor(model => model.DoB, new { htmlAttributes = new { @class = "form-control", @style = "color:aliceblue;", @type = "date" } })
+                            @Html.ValidationMessageFor(model => model.DoB, "", new { @style = "color:red;" })
+
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label class="col-lg-3 font-weight-bold text-light col-form-label form-control-label text-2">Country</label>
+                        <div class="col-lg-9">
+                            @Html.EditorFor(model => model.Country, new { htmlAttributes = new { @class = "form-control", @style = "color:aliceblue;", @placeholder = "country" } })
+                            @Html.ValidationMessageFor(model => model.Country, "", new { @style = "color:red;" })
+
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label class="col-lg-3 font-weight-bold text-light col-form-label form-control-label text-2 required">Username</label>
+                        <div class="col-lg-9">
+                            @Html.EditorFor(model => model.User_Name, new { htmlAttributes = new { @class = "form-control", @style = "color:aliceblue;", @placeholder = "user name" } })
+                            @Html.ValidationMessageFor(model => model.User_Name, "", new { @style = "color:red;" })
+
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-lg-3 font-weight-bold text-light col-form-label form-control-label text-2 required">Password</label>
+                        <div class="col-lg-9">
+                            @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control", @style = "color:aliceblue;", @placeholder = "password", @type = "password" } })
+                            @Html.ValidationMessageFor(model => model.Password, "", new { @style = "color:red;" })
+
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-lg-3 font-weight-bold text-light col-form-label form-control-label text-2 required">Confirm password</label>
+                        <div class="col-lg-9">
+                            @Html.EditorFor(model => model.ConfirmPassword, new { htmlAttributes = new { @class = "form-control", @style = "color:aliceblue;", @placeholder = "confirm password", @type = "password" } })
+                            @Html.ValidationMessageFor(model => model.ConfirmPassword, "", new { @style = "color:red;" })
+
+
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="form-group col-lg-9">
+
+                        </div>
+                        <div class="form-group col-lg-3">
+                            <input type="submit" value="Register" class="btn btn-primary btn-modern float-right" data-loading-text="Loading...">
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        }
+    </div>
+
+</div>
+
+

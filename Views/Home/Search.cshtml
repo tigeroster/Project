@@ -1,0 +1,140 @@
+﻿
+@model IEnumerable<object>
+
+@{
+    List<Project.Models.Game> game = Model.ToList()[0] as List<Project.Models.Game>;
+    List<Project.Models.Category> category = Model.ToList()[1] as List<Project.Models.Category>;
+    List<Project.Models.Developer> developer = Model.ToList()[2] as List<Project.Models.Developer>;
+
+}
+
+@{
+    ViewBag.Title = "Product Search";
+    Layout = "~/Views/Shared/_LayoutPage2.cshtml";
+}
+<div role="main" class="main shop py-4">
+
+    <div class="container">
+
+        <div class="row">
+            <div class="col-lg-3">
+                <aside class="sidebar">
+
+                    <h5 class="font-weight-bold pt-3">Categories</h5>
+                    <ul class="nav nav-list flex-column">
+                        <li class="nav-item">@Html.ActionLink("All", "ProductCatalogue","", new { @style = "color:azure" })</li>
+                        @foreach (var cat in category)
+                        {
+                            <li class="nav-item">@Html.ActionLink(cat.Category_name, "Filter", new { name = cat.Category_name }, new { @style = "color:azure" })</li>
+                        }
+
+
+                    </ul>
+                    <h5 class="font-weight-bold pt-5">Tags</h5>
+                    <div class="mb-3 pb-1">
+                        @foreach (var dev in developer)
+                        {
+                            <a href="#"><span class="badge badge-light badge-sm badge-pill text-uppercase px-2 py-1 mr-1">@Html.DisplayFor(modelItem => dev.Developer_name)</span></a>
+                        }
+                        <div class="row mb-5">
+                            <div class="col">
+                                <h5 class="font-weight-bold pt-5">Top Rated Games</h5>
+                                <ul class="simple-post-list">
+                                    <li>
+                                        <div class="post-image">
+                                            <div class="d-block">
+                                                <a href="shop-product-sidebar-left.html">
+                                                    <img alt="" width="60" height="60" class="img-fluid" src="~/Content/img/products/product-1.jpg">
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <div class="post-info">
+                                            <a href="shop-product-sidebar-left.html">GTA V</a>
+                                            <div class="post-meta text-dark font-weight-semibold">
+                                                $299
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="post-image">
+                                            <div class="d-block">
+                                                <a href="shop-product-sidebar-left.html">
+                                                    <img alt="" width="60" height="60" class="img-fluid" src="~/Content/img/products/product-4.jpg">
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <div class="post-info">
+                                            <a href="shop-product-sidebar-left.html">FarCry6</a>
+                                            <div class="post-meta text-dark font-weight-semibold">
+                                                $199
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="post-image">
+                                            <div class="d-block">
+                                                <a href="shop-product-sidebar-left.html">
+                                                    <img alt="" width="60" height="60" class="img-fluid" src="~/Content/img/products/product-3.jpg">
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <div class="post-info">
+                                            <a href="shop-product-sidebar-left.html">Red Dead Redemption2</a>
+                                            <div class="post-meta text-dark font-weight-semibold">
+                                                $49
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </aside>
+            </div>
+            <div class="col-lg-9">
+
+                <div class="masonry-loader masonry-loader-showing">
+                    <div class="heading heading-border heading-middle-border heading-middle-border-center">
+                        <h1 class="font-weight-normal" style="color:aliceblue;">@Session["noData"] </h1>
+                    </div>
+                    <div class="row products product-thumb-info-list" data-plugin-masonry data-plugin-options="{'layoutMode': 'fitRows'}">
+                        @foreach (var item in game)
+                        {
+                            <div class="col-sm-6 col-lg-4 product">
+
+                                <span class="product-thumb-info border-0">
+                                    <a href=@Url.Action("AddToCart","Cart", new { id=item.Game_Id}) class="add-to-cart-product bg-color-primary">
+                                        <span class="text-uppercase text-1">Add to Cart</span>
+                                    </a>
+                                    <a href=@Url.Action("Product", "Home", new { name = item.Game_Name })>
+                                        <span class="product-thumb-info-image">
+                                            <img alt="" class="img-fluid" src="@Url.Content(item.Game_Image)">
+                                        </span>
+                                    </a>
+                                    <span class="product-thumb-info-content product-thumb-info-content pl-0 bg-color-dark-scale-4">
+                                        <h4 class="text-4 text-primary">Name: @Html.DisplayFor(modelItem => item.Game_Name)</h4>
+                                        <span class="price">
+                                            <ins><span class="amount text-light font-weight-semibold">Price: $@Html.DisplayFor(modelItem => item.Price)</span></ins>
+                                        </span>
+                                    </span>
+                                </span>
+                            </div>
+                        }
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <ul class="pagination float-right">
+                                <li class="page-item"><a class="page-link" href="#"><i class="fas fa-angle-left"></i></a></li>
+                                <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                                <li class="page-item"><a class="page-link" href="#">2</a></li>
+                                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                <a class="page-link" href="#"><i class="fas fa-angle-right"></i></a>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

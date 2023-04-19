@@ -1,0 +1,110 @@
+﻿@{
+    ViewBag.Title = "Login";
+    Layout = "~/Views/Shared/_LayoutPage1.cshtml";
+}
+<div role="main" class="main shop py-4">
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <div class="featured-boxes">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="featured-box featured-box-primary text-left mt-2">
+                                <div class="box-content">
+                                    <h4 class="color-primary font-weight-semibold text-4 text-uppercase mb-3">Admin Login</h4>
+                                    @using (Html.BeginForm("Authenticate", "Admin", FormMethod.Post))
+                                    {
+                                        <div class="form-row">
+                                            <div class="form-group col">
+                                                <label class="font-weight-bold text-light text-2">E-mail Address</label>
+                                                @Html.TextBox("email", "", new { @class = "form-control form-control-lg", @style = "color:aliceblue;" })
+
+                                            </div>
+                                        </div>
+                                        <div class="form-row">
+                                            <div class="form-group col">
+                                                <a class="float-right" href="#">(Lost Password?)</a>
+                                                <label class="font-weight-bold text-light text-2">Password</label>
+                                                @Html.TextBox("password", "", new { @class = "form-control form-control-lg", @style = "color:aliceblue;", @type = "password" })
+
+                                            </div>
+                                        </div>
+                                        <div class="form-row">
+                                            <div class="form-group col-lg-9">
+                                                <div class="custom-control custom-checkbox">
+                                                    <input type="checkbox" class="custom-control-input" id="terms">
+                                                    <label class="custom-control-label text-2" for="terms">I have read and agree to the <a href="#">terms of service</a></label>
+                                                </div>
+                                            </div>
+                                            <div class="form-group col-lg-3">
+                                                <input type="submit" value="Login" class="btn btn-primary float-right" data-loading-text="Loading...">
+                                            </div>
+                                        </div>
+
+                                        string error = "errorAdmin";
+
+                                        if (error == ViewBag.error)
+                                        {
+                                            <div class="alert alert-danger" role="alert">
+                                                Invalid User name or Password!
+                                            </div>
+                                        }
+                                    }
+                                  
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="featured-box featured-box-primary text-left mt-2">
+                                <div class="box-content">
+                                    <h4 class="color-primary font-weight-semibold text-4 text-uppercase mb-3">Customer Login</h4>
+                                    @using (Html.BeginForm("Authenticate", "Home", FormMethod.Post))
+                                    {
+                                        <div class="form-row">
+                                            <div class="form-group col">
+                                                <label class="font-weight-bold text-light text-2">E-mail Address</label>
+                                                @Html.TextBox("email", "", new { @class = "form-control form-control-lg", @style = "color:aliceblue;" })
+
+                                            </div>
+                                        </div>
+                                        <div class="form-row">
+                                            <div class="form-group col">
+                                                <a class="float-right" href="#">(Lost Password?)</a>
+                                                <label class="font-weight-bold text-light text-2">Password</label>
+                                                @Html.TextBox("password", "", new { @class = "form-control form-control-lg", @style = "color:aliceblue;", @type = "password" })
+
+                                            </div>
+                                        </div>
+                                        <div class="form-row">
+                                            <div class="form-group col-lg-9">
+                                                <div class="custom-control custom-checkbox">
+                                                    <input type="checkbox" class="custom-control-input" id="terms">
+                                                    <label class="custom-control-label text-2" for="terms">I have read and agree to the <a href="#">terms of service</a></label>
+                                                </div>
+                                            </div>
+                                            <div class="form-group col-lg-3">
+                                                <input type="submit" value="Login" class="btn btn-primary float-right" data-loading-text="Loading...">
+                                            </div>
+                                        </div>
+
+                                        string error = "error";
+
+                                        if (error == ViewBag.error)
+                                        {
+                                            <div class="alert alert-danger" role="alert">
+                                                Invalid User name or Password!
+                                            </div>
+                                        }
+                                    }
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+

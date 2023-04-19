@@ -1,0 +1,81 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="MonarchyModelStoreContainer" CdmEntityContainer="MonarchyEntities">
+    <EntitySetMapping Name="Admins">
+      <EntityTypeMapping TypeName="MonarchyModel.Admin">
+        <MappingFragment StoreEntitySet="Admin">
+          <ScalarProperty Name="admin_id" ColumnName="admin_id" />
+          <ScalarProperty Name="admin_name" ColumnName="admin_name" />
+          <ScalarProperty Name="admin_password" ColumnName="admin_password" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Carts">
+      <EntityTypeMapping TypeName="MonarchyModel.Cart">
+        <MappingFragment StoreEntitySet="Cart">
+          <ScalarProperty Name="image" ColumnName="image" />
+          <ScalarProperty Name="game" ColumnName="game" />
+          <ScalarProperty Name="price" ColumnName="price" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Categories">
+      <EntityTypeMapping TypeName="MonarchyModel.Category">
+        <MappingFragment StoreEntitySet="Category">
+          <ScalarProperty Name="Category_Id" ColumnName="Category_Id" />
+          <ScalarProperty Name="Category_name" ColumnName="Category_name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Developers">
+      <EntityTypeMapping TypeName="MonarchyModel.Developer">
+        <MappingFragment StoreEntitySet="Developer">
+          <ScalarProperty Name="Developer_Id" ColumnName="Developer_Id" />
+          <ScalarProperty Name="Developer_name" ColumnName="Developer_name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Games">
+      <EntityTypeMapping TypeName="MonarchyModel.Game">
+        <MappingFragment StoreEntitySet="Game">
+          <ScalarProperty Name="Game_Id" ColumnName="Game_Id" />
+          <ScalarProperty Name="Game_Name" ColumnName="Game_Name" />
+          <ScalarProperty Name="Price" ColumnName="Price" />
+          <ScalarProperty Name="Category_Id" ColumnName="Category_Id" />
+          <ScalarProperty Name="Developer_Id" ColumnName="Developer_Id" />
+          <ScalarProperty Name="Game_Image" ColumnName="Game_Image" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="RAM" ColumnName="RAM" />
+          <ScalarProperty Name="VGA" ColumnName="VGA" />
+          <ScalarProperty Name="Disk_Space" ColumnName="Disk_Space" />
+          <ScalarProperty Name="CPU" ColumnName="CPU" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="OrderDetails">
+      <EntityTypeMapping TypeName="MonarchyModel.OrderDetail">
+        <MappingFragment StoreEntitySet="OrderDetails">
+          <ScalarProperty Name="Order_Id" ColumnName="Order_Id" />
+          <ScalarProperty Name="Customer_Id" ColumnName="Customer_Id" />
+          <ScalarProperty Name="Order_Amount" ColumnName="Order_Amount" />
+          <ScalarProperty Name="Order_Date" ColumnName="Order_Date" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Users">
+      <EntityTypeMapping TypeName="MonarchyModel.User">
+        <MappingFragment StoreEntitySet="User">
+          <ScalarProperty Name="User_id" ColumnName="User_id" />
+          <ScalarProperty Name="First_Name" ColumnName="First_Name" />
+          <ScalarProperty Name="Last_Name" ColumnName="Last_Name" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="DoB" ColumnName="DoB" />
+          <ScalarProperty Name="Country" ColumnName="Country" />
+          <ScalarProperty Name="User_Name" ColumnName="User_Name" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="Profile_pic" ColumnName="Profile_pic" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
